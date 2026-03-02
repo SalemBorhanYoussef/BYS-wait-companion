@@ -28,6 +28,11 @@ It is driven by the same AI workflow that generates the final app:
 
 This project was built for the **Mistral AI Worldwide Hackathon**.
 
+## Showcase
+
+- Watch the demo: [Mistral Wait-Companion on YouTube](https://youtu.be/ga-2SwS_LdY?si=BruA6yp1pmimfng7)
+- Try the live app: [BYS-wait-companion on Hugging Face Spaces](https://huggingface.co/spaces/mistral-hackaton-2026/BYS-wait-companion)
+
 ## What It Does
 
 The user enters a prompt for an app or website.
@@ -38,6 +43,29 @@ While the build runs:
 - Mistral generates the live script and app output
 - audio plays either through browser speech or ElevenLabs
 - the final generated app opens in a preview overlay when ready
+
+## Product Screens
+
+Three key moments of the experience: prompt entry, live wait gameplay, and generated app preview.
+
+<table>
+  <tr>
+    <td align="center"><strong>Landing</strong></td>
+    <td align="center"><strong>Wait Game</strong></td>
+    <td align="center"><strong>Generated App</strong></td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <img src="frontend/assets/screenshots/StartSite.png" alt="Mistral Wait-Companion landing screen" width="100%" />
+    </td>
+    <td align="center" width="33%">
+      <img src="frontend/assets/screenshots/GameSite.png" alt="Mistral Wait-Companion game screen" width="100%" />
+    </td>
+    <td align="center" width="33%">
+      <img src="frontend/assets/screenshots/generationSite.png" alt="Mistral Wait-Companion generated app screen" width="100%" />
+    </td>
+  </tr>
+</table>
 
 ## Main Features
 
