@@ -39,7 +39,6 @@ venv.bak/
 Thumbs.db
 frontend/generated-app/*
 frontend/audio_*_*_*.mp3
-frontend/assets/master_sheet.png
 frontend/assets/screenshots/*
 *.log
 remotion-anim/*

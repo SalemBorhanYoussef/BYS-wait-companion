@@ -39,6 +39,20 @@ While the build runs:
 - audio plays either through browser speech or ElevenLabs
 - the final generated app opens in a preview overlay when ready
 
+## Product Screens
+
+### Landing Screen
+
+![Mistral Wait-Companion landing screen](frontend/assets/screenshots/StartSite.png)
+
+### Wait Game Screen
+
+![Mistral Wait-Companion game screen](frontend/assets/screenshots/GameSite.png)
+
+### Generated App Screen
+
+![Mistral Wait-Companion generated app screen](frontend/assets/screenshots/generationSite.png)
+
 ## Main Features
 
 - FastAI-style wait-screen replacement for prompt-driven app generation
