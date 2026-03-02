@@ -1248,11 +1248,32 @@ function spawnEntity() {
 
 // Load Master Sprite Sheet (Player, Enemy, Coin vertically stacked)
 const spriteMaster = new Image();
-spriteMaster.src = "./assets/master_sheet.png";
 let processedSpriteSheet = null;
 let processedSpriteMeta = "";
+let spriteSheetReady = false;
+let spriteSheetFailed = false;
+
+spriteMaster.decoding = "async";
+spriteMaster.onload = () => {
+    spriteSheetReady = true;
+    spriteSheetFailed = false;
+    processedSpriteSheet = null;
+    processedSpriteMeta = "";
+};
+spriteMaster.onerror = () => {
+    spriteSheetReady = false;
+    spriteSheetFailed = true;
+    processedSpriteSheet = null;
+    processedSpriteMeta = "";
+    console.warn("Failed to load master sprite sheet from /assets/master_sheet.png");
+};
+spriteMaster.src = `/assets/master_sheet.png?v=1`;
 
 function getRenderableSpriteSheet() {
+    if (spriteSheetFailed || !spriteSheetReady) {
+        return null;
+    }
+
     if (!spriteMaster.complete || spriteMaster.naturalWidth === 0 || spriteMaster.naturalHeight === 0) {
         return null;
     }
