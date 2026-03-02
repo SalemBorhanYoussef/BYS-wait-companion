@@ -1248,7 +1248,6 @@ function spawnEntity() {
 
 // Load Master Sprite Sheet (Player, Enemy, Coin vertically stacked)
 const spriteMaster = new Image();
-spriteMaster.src = "./assets/mistral_assets_sprites.png";
 let processedSpriteSheet = null;
 let processedSpriteMeta = "";
 
