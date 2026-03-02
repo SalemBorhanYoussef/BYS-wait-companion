@@ -1,0 +1,26 @@
+:root {
+    --mistral-orange: #f97316;
+    --mistral-orange-deep: #c2410c;
+    --mistral-bg: #020d23;
+    --mistral-bg-soft: #09142c;
+    --panel-bg: rgba(8, 19, 44, 0.94);
+    --panel-bg-soft: rgba(8, 19, 44, 0.82);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --matrix-color: #1d355b;
+    --border-color: rgba(120, 150, 210, 0.18);
+    --panel-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+
+    --game-stage-width: 980px;
+    --game-stage-height: 430px;
+    --game-hud-height: 66px;
+    --game-aside-width: 360px;
+    --game-gap: 22px;
+
+    --editor-height: 310px;
+
+    --hack-scroll-track: linear-gradient(180deg, rgba(10, 22, 48, 0.95), rgba(4, 12, 28, 0.95));
+    --hack-scroll-thumb: linear-gradient(180deg, #fb923c, #f97316 55%, #c2410c);
+    --hack-scroll-thumb-hover: linear-gradient(180deg, #fdba74, #fb923c 55%, #ea580c);
+}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mistral Wait-Companion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+</head>
+
+<body>
+    <div class="matrix-bg" id="matrixCode"></div>
+
+    <div class="overlay" id="startScreen">
+        <canvas id="startCanvas" class="start-canvas" aria-hidden="true"></canvas>
+        <section class="landing-shell wireframe-layout">
+            <div class="hero-band full-header">
+                <div class="hero-single">
+                    <div class="hero-copy">
+                        <div class="hero-topbar">
+                            <div class="eyebrow">Hackathon Demo Experience</div>
+                            <div class="topbar-controls">
+                                <div class="mode-toggle-inline" id="modeSwitchCard">
+                                    <span class="mode-toggle-state" id="modeBadge">Stage Mode</span>
+                                    <button class="mode-toggle" id="modeToggleBtn" type="button"
+                                        aria-label="Toggle build mode" aria-pressed="false">
+                                        <span class="mode-toggle-track">
+                                            <span class="mode-toggle-thumb"></span>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="mode-toggle-inline" id="audioSwitchCard">
+                                    <span class="mode-toggle-state" id="audioBadge">Local Audio</span>
+                                    <button class="mode-toggle" id="audioToggleBtn" type="button"
+                                        aria-label="Toggle audio source" aria-pressed="false">
+                                        <span class="mode-toggle-track">
+                                            <span class="mode-toggle-thumb"></span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-title-row">
+                            <div class="logo-pixel-m">
+                                <div class="pixel"></div>
+                                <div class="pixel empty"></div>
+                                <div class="pixel empty"></div>
+                                <div class="pixel empty"></div>
+                                <div class="pixel"></div>
+                                <div class="pixel"></div>
+                                <div class="pixel"></div>
+                                <div class="pixel empty"></div>
+                                <div class="pixel"></div>
+                                <div class="pixel"></div>
+                                <div class="pixel"></div>
+                                <div class="pixel empty"></div>
+                                <div class="pixel"></div>
+                                <div class="pixel empty"></div>
+                                <div class="pixel"></div>
+                                <div class="pixel"></div>
+                                <div class="pixel empty"></div>
+                                <div class="pixel empty"></div>
+                                <div class="pixel empty"></div>
+                                <div class="pixel"></div>
+                                <div class="pixel"></div>
+                                <div class="pixel empty"></div>
+                                <div class="pixel empty"></div>
+                                <div class="pixel empty"></div>
+                                <div class="pixel"></div>
+                            </div>
+                            <h1>MISTRAL WAIT-COMPANION</h1>
+                        </div>
+                        <p class="hero-text">Your app is building. Your wait time is now playable.</p>
+                        <p class="hero-subtext">
+                            Replace dead loading screens with a live runner game, AI podcast commentary,
+                            and a streaming builder aesthetic.
+                        </p>
+
+                        <div class="feature-strip">
+                            <div class="feature-pill">Playable loading screen</div>
+                            <div class="feature-pill">Live AI podcast</div>
+                            <div class="feature-pill">Builder vibe in motion</div>
+                        </div>
+                        <p class="mode-toggle-description" id="modeDescription">
+                            Fast, polished, hackathon-safe output for demos and reliable live runs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-grid swapped-layout">
+                <div class="chat-input-wrapper">
+                    <div class="input-heading">
+                        <span>What should Mistral build while you play?</span>
+                    </div>
+                    <textarea id="promptEditor"></textarea>
+                    <div class="chat-actions">
+                        <div class="helper-copy">Start the build experience and jump straight into the wait screen.
+                        </div>
+                        <button id="startBtn" class="send-btn" title="Start generation" aria-label="Start generation">
+                            <span>Generate and Play</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="panel-stack">
+                    <div class="auth-box compact-panel">
+                        <label for="userName">Developer Name</label>
+                        <input type="text" id="userName" value="Adam" autocomplete="off">
+                    </div>
+
+                    <div class="preview-card">
+                        <div class="preview-label">Build Preview</div>
+                        <div class="preview-window">
+                            <div class="preview-header">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="preview-grid">
+                                <div class="preview-runner">
+                                    <div class="preview-player"></div>
+                                    <div class="preview-obstacle"></div>
+                                </div>
+                                <div class="preview-code">
+                                    <span>&lt;agent status="thinking"&gt;</span>
+                                    <span> loading podcast script...</span>
+                                    <span> rendering wait game...</span>
+                                    <span>&lt;/agent&gt;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="overlay hidden" id="gameScreen">
+        <!-- New Canvas for Matrix Rain -->
+        <canvas id="matrixCanvas" class="matrix-canvas" aria-hidden="true"></canvas>
+        <span class="game-overlay-accent" aria-hidden="true"></span>
+        <section class="game-shell">
+            <div class="game-layout">
+                <main class="game-main">
+                    <div class="header game-topbar">
+                        <span class="status">GENERATING <span class="dots">...</span></span>
+                        <span class="lives">LIVES: <span id="livesVal">7</span> <span class="heart">HEART</span></span>
+                        <span class="score">SCORE: <span id="scoreVal">0</span></span>
+                        <button id="pauseBtn" class="game-btn">PAUSE</button>
+                        <button id="backToStartBtn" class="game-secondary-btn" type="button">NEW BUILD</button>
+                    </div>
+
+                    <div class="game-container">
+                        <canvas id="gameCanvas" width="800" height="300"></canvas>
+
+                        <div id="gameStartScreen" class="game-launch-screen">
+                            <h2>WAIT SCREEN READY</h2>
+                            <p>Your build is running. Start the level when you are ready.</p>
+                            <button id="startLevelBtn">START LEVEL</button>
+                        </div>
+
+                        <div id="gameOverScreen" class="hidden">
+                            <h2>GAME OVER</h2>
+                            <p>Closed-Source got you.</p>
+                            <button id="restartBtn">RESTART LEVEL</button>
+                        </div>
+                    </div>
+
+                    <p class="instruction">Press [SPACE], [ARROW UP], or click the canvas to jump.</p>
+
+                    <div class="app-ready-bar hidden" id="appReadyBar">
+                        <div class="app-ready-copy">
+                            <span class="app-ready-label">Generated App Ready</span>
+                            <p id="appReadyText">The generated app is ready to open.</p>
+                        </div>
+                        <button id="openGeneratedAppBtn" class="send-btn app-ready-btn" type="button">
+                            Open Generated App
+                        </button>
+                    </div>
+
+                    <div class="agent-activity-card" id="agentActivityCard">
+                        <div class="agent-activity-header">
+                            <span class="agent-activity-label">Agent Activity</span>
+                            <span class="agent-activity-state" id="buildState">BOOTING</span>
+                        </div>
+                        <p class="agent-activity-summary" id="activitySummary">
+                            Initializing wait companion runtime.
+                        </p>
+                        <div class="agent-activity-list">
+                            <div class="agent-activity-item" data-step="prompt">
+                                <span class="agent-activity-dot"></span>
+                                <div class="agent-activity-copy">
+                                    <span class="agent-activity-title">Prompt Intake</span>
+                                    <span class="agent-activity-detail">Waiting for the build request.</span>
+                                </div>
+                            </div>
+                            <div class="agent-activity-item" data-step="podcast">
+                                <span class="agent-activity-dot"></span>
+                                <div class="agent-activity-copy">
+                                    <span class="agent-activity-title">Podcast Agent</span>
+                                    <span class="agent-activity-detail">Preparing the spoken intro.</span>
+                                </div>
+                            </div>
+                            <div class="agent-activity-item" data-step="audio">
+                                <span class="agent-activity-dot"></span>
+                                <div class="agent-activity-copy">
+                                    <span class="agent-activity-title">Audio Stream</span>
+                                    <span class="agent-activity-detail">Waiting for playback data.</span>
+                                </div>
+                            </div>
+                            <div class="agent-activity-item" data-step="app">
+                                <span class="agent-activity-dot"></span>
+                                <div class="agent-activity-copy">
+                                    <span class="agent-activity-title">App Builder</span>
+                                    <span class="agent-activity-detail">Compiling the generated app.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <aside class="game-aside">
+                    <div class="transcript-box">
+                        <div class="transcript-header">Mistral Live Podcast Transcript</div>
+                        <div class="transcript-content" id="transcriptText">Waiting for agent thoughts...</div>
+                        <div class="audio-panel">
+                            <div class="audio-panel-header">
+                                <span class="audio-panel-label">Live Playback</span>
+                                <span class="audio-panel-badge">Podcast</span>
+                            </div>
+                            <div class="audio-status" id="audioStatus">Audio status: waiting for script...</div>
+                            <audio id="podcastAudio" controls class="hidden"></audio>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </div>
+
+    <div class="overlay hidden" id="generatedAppScreen">
+        <section class="generated-app-overlay-shell">
+            <div class="generated-app-overlay-header">
+                <div class="generated-app-overlay-copy">
+                    <div class="eyebrow">Generated Build</div>
+                    <h2 id="generatedAppTitle">Generated Hackathon App</h2>
+                    <p id="generatedAppSummary">The generated experience is ready to review.</p>
+                </div>
+                <div class="generated-app-overlay-actions">
+                    <button id="generatedBackToStartBtn" class="generated-back-btn" type="button">New Build</button>
+                    <button id="backToGameBtn" class="generated-back-btn" type="button">Back to Wait Screen</button>
+                </div>
+            </div>
+            <div class="generated-app-frame-shell">
+                <div class="generated-app-history hidden" id="generatedAppHistory">
+                    <div class="generated-app-history-header">
+                        <span class="generated-app-history-label">Recent Generated Apps</span>
+                        <span class="generated-app-history-note">Older than 5 minutes disappear automatically.</span>
+                    </div>
+                    <div class="generated-app-history-list" id="generatedAppHistoryList"></div>
+                </div>
+                <iframe id="generatedAppFrame" title="Generated app preview" loading="eager"
+                    sandbox="allow-scripts allow-forms allow-modals allow-downloads"
+                    referrerpolicy="no-referrer"></iframe>
+            </div>
+        </section>
+    </div>
+
+    <audio id="landingIntroAudio" class="hidden"></audio>
+
+    <script src="app.js?v=2"></script>
+</body>
+
+</html>

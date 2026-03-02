@@ -1,0 +1,16 @@
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+frontend/generated-app
+frontend/audio_*.mp3
+remotion-anim/node_modules
+tools/node_modules
+node_modules
+MD

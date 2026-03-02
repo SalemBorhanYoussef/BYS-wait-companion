@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+mistralai
+weave
+pydantic
+python-dotenv
+requests
+gTTS
